@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         result = findViewById<EditText>(R.id.result)
         newNumber = findViewById<EditText>(R.id.newNumber)
 
-        //buttons with numbers initialization
+        //Buttons with numbers initialization
         val button0: Button = findViewById<Button>(R.id.button0)
         val button1: Button = findViewById<Button>(R.id.button1)
         val button2: Button = findViewById<Button>(R.id.button2)
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         val button9: Button = findViewById<Button>(R.id.button9)
         val buttonDot: Button = findViewById<Button>(R.id.buttonDecimal)
 
-        //buttons for operations
+        //Buttons for operations
         val plus: Button = findViewById(R.id.buttonAddition)
         val minus: Button = findViewById(R.id.buttonSubtraction)
         val times: Button = findViewById(R.id.buttonMultiplication)
