@@ -2,6 +2,7 @@ package com.sandor.calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -45,5 +46,11 @@ class MainActivity : AppCompatActivity() {
         val times: Button = findViewById(R.id.buttonMultiplication)
         val divide: Button = findViewById(R.id.buttonDivision)
         val equals: Button = findViewById(R.id.buttonEquals)
+
+        // Creation of listener for buttons
+        val listener = View.OnClickListener { v ->
+            val b = v as Button
+            newNumber.append(b.text)
+        }
     }
 }
