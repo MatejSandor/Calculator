@@ -165,7 +165,7 @@
         app:layout_constraintStart_toEndOf="@+id/button0" />
 
     <Button
-        android:id="@+id/buttonSign"
+        android:id="@+id/buttonSubtraction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -184,7 +184,7 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/button0"
         app:layout_constraintEnd_toEndOf="@+id/buttonDivision"
         app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toEndOf="@+id/buttonSign" />
+        app:layout_constraintStart_toEndOf="@+id/buttonSubtraction" />
 
     <TextView
         android:id="@+id/operation"
