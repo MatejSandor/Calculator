@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        result = findViewById<EditText>(R.id.result)
-        newNumber = findViewById<EditText>(R.id.newNumber)
+        result = findViewById(R.id.result)
+        newNumber = findViewById(R.id.newNumber)
 
         //Buttons with numbers initialization
         val button0= findViewById<Button>(R.id.button0)
