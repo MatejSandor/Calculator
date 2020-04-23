@@ -105,5 +105,7 @@ class MainActivity : AppCompatActivity() {
                 operand1!! / operand2
             }
         }
+        result.setText(operand1.toString())
+        newNumber.setText("")
     }
 }
