@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         newNumber = findViewById(R.id.newNumber)
 
         //Buttons with numbers initialization
-        val button0= findViewById<Button>(R.id.button0)
-        val button1= findViewById<Button>(R.id.button1)
+        val button0 = findViewById<Button>(R.id.button0)
+        val button1 = findViewById<Button>(R.id.button1)
         val button2 = findViewById<Button>(R.id.button2)
         val button3 = findViewById<Button>(R.id.button3)
         val button4 = findViewById<Button>(R.id.button4)
@@ -64,6 +65,22 @@ class MainActivity : AppCompatActivity() {
         button8.setOnClickListener(listener)
         button9.setOnClickListener(listener)
         buttonDot.setOnClickListener(listener)
-        
+
+        val operationListener = View.OnClickListener { v ->
+            val o = (v as Button).text.toString()
+            val value = newNumber.text.toString()
+            if (value.isNotEmpty()) {
+                println("Performing operation....")
+            }
+            pendingOperation = o
+            displayOperation.text = pendingOperation
+        }
+
+        plus.setOnClickListener(operationListener)
+        minus.setOnClickListener(operationListener)
+        times.setOnClickListener(operationListener)
+        divide.setOnClickListener(operationListener)
+        equals.setOnClickListener(operationListener)
+
     }
 }
