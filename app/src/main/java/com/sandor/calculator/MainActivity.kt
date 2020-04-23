@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
             val value = newNumber.text.toString()
             if (value.isNotEmpty()) {
                 println("Performing operation....")
+                performOperation(value, o)
             }
             pendingOperation = o
             displayOperation.text = pendingOperation
@@ -82,5 +83,9 @@ class MainActivity : AppCompatActivity() {
         divide.setOnClickListener(operationListener)
         equals.setOnClickListener(operationListener)
 
+    }
+
+    private fun performOperation(value: String, operation: String) {
+        displayOperation.text = operation
     }
 }
