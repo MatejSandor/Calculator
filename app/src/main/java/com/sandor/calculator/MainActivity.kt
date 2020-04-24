@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
+private const val STATE_PENDING_OPERATION = "StatePendingOperation"
+private const val STATE_OPERAND1 = "Operand1"
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     //Variables to hold operands
     private var operand1: Double? = null
-    private var operand2: Double = 0.0
     private var pendingOperation = "="
 
 
@@ -68,11 +69,13 @@ class MainActivity : AppCompatActivity() {
 
         val operationListener = View.OnClickListener { v ->
             val o = (v as Button).text.toString()
-            val value = newNumber.text.toString()
-            if (value.isNotEmpty()) {
-                println("Performing operation....")
+            try {
+                val value = newNumber.text.toString().toDouble()
                 performOperation(value, o)
+            } catch (e: NumberFormatException) {
+                newNumber.setText("")
             }
+            val value = newNumber.text.toString()
             pendingOperation = o
             displayOperation.text = pendingOperation
         }
@@ -85,27 +88,42 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun performOperation(value: String, operation: String) {
+    private fun performOperation(value: Double, operation: String) {
         if (operand1 == null) {
-            operand1 = value.toDouble()
+            operand1 = value
         } else {
-            operand2 = value.toDouble()
             if (pendingOperation == "=") {
                 pendingOperation = operation
             }
         }
         when (pendingOperation) {
-            "=" -> operand1 = operand2
-            "+" -> operand1 = operand1!! + operand2
-            "-" -> operand1 = operand1!! - operand2
-            "*" -> operand1 = operand1!! * operand2
-            "/" -> operand1 = if (operand2 == 0.0) {
+            "=" -> operand1 = value
+            "+" -> operand1 = operand1!! + value
+            "-" -> operand1 = operand1!! - value
+            "*" -> operand1 = operand1!! * value
+            "/" -> operand1 = if (value == 0.0) {
                 Double.NaN
             } else {
-                operand1!! / operand2
+                operand1!! / value
             }
         }
         result.setText(operand1.toString())
         newNumber.setText("")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        if (operand1 != null) {
+            outState.putDouble(STATE_OPERAND1, operand1!!)
+        }
+        outState.putString(STATE_PENDING_OPERATION, pendingOperation)
+
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        pendingOperation = savedInstanceState.getString(STATE_PENDING_OPERATION, "")
+        operand1 = savedInstanceState.getDouble(STATE_OPERAND1,0.0)
+        displayOperation.text = pendingOperation
     }
 }
