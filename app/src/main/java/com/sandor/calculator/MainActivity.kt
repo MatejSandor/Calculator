@@ -68,11 +68,13 @@ class MainActivity : AppCompatActivity() {
 
         val operationListener = View.OnClickListener { v ->
             val o = (v as Button).text.toString()
-            val value = newNumber.text.toString()
-            if (value.isNotEmpty()) {
-                println("Performing operation....")
+            try {
+                val value = newNumber.text.toString().toDouble()
                 performOperation(value, o)
+            } catch (e: NumberFormatException) {
+                newNumber.setText("")
             }
+            val value = newNumber.text.toString()
             pendingOperation = o
             displayOperation.text = pendingOperation
         }
@@ -85,11 +87,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun performOperation(value: String, operation: String) {
+    private fun performOperation(value: Double, operation: String) {
         if (operand1 == null) {
-            operand1 = value.toDouble()
+            operand1 = value
         } else {
-            operand2 = value.toDouble()
+            operand2 = value
             if (pendingOperation == "=") {
                 pendingOperation = operation
             }
