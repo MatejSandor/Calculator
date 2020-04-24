@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
+private const val OPERATION_CONTENTS = "OperationContent"
 
 class MainActivity : AppCompatActivity() {
 
@@ -111,9 +112,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        outState.putString(OPERATION_CONTENTS, displayOperation.text.toString())
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
+        displayOperation.text = savedInstanceState.getString(OPERATION_CONTENTS, "")
     }
 }
