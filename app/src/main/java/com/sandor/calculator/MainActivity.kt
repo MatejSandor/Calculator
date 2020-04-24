@@ -113,15 +113,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        if (operand1 != null) {
+            outState.putDouble(STATE_OPERAND1, operand1!!)
+        }
         outState.putString(STATE_PENDING_OPERATION, pendingOperation)
-        outState.putString(STATE_OPERAND1, operand1.toString())
 
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         pendingOperation = savedInstanceState.getString(STATE_PENDING_OPERATION, "")
-        operand1 = savedInstanceState.getString(STATE_OPERAND1,"").toDouble()
+        operand1 = savedInstanceState.getDouble(STATE_OPERAND1,0.0)
         displayOperation.text = pendingOperation
     }
 }
