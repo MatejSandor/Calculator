@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     //Variables to hold operands
     private var operand1: Double? = null
-    private var operand2: Double = 0.0
     private var pendingOperation = "="
 
 
@@ -91,20 +90,19 @@ class MainActivity : AppCompatActivity() {
         if (operand1 == null) {
             operand1 = value
         } else {
-            operand2 = value
             if (pendingOperation == "=") {
                 pendingOperation = operation
             }
         }
         when (pendingOperation) {
-            "=" -> operand1 = operand2
-            "+" -> operand1 = operand1!! + operand2
-            "-" -> operand1 = operand1!! - operand2
-            "*" -> operand1 = operand1!! * operand2
-            "/" -> operand1 = if (operand2 == 0.0) {
+            "=" -> operand1 = value
+            "+" -> operand1 = operand1!! + value
+            "-" -> operand1 = operand1!! - value
+            "*" -> operand1 = operand1!! * value
+            "/" -> operand1 = if (value == 0.0) {
                 Double.NaN
             } else {
-                operand1!! / operand2
+                operand1!! / value
             }
         }
         result.setText(operand1.toString())
