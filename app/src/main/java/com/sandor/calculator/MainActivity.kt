@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         pendingOperation = savedInstanceState.getString(STATE_PENDING_OPERATION, "")
-        operand1 = savedInstanceState.getDouble(STATE_OPERAND1,0.0)
+        operand1 = savedInstanceState.getDouble(STATE_OPERAND1, 0.0)
         displayOperation.text = pendingOperation
     }
 }
