@@ -8,7 +8,8 @@ import android.widget.EditText
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
-private const val OPERATION_CONTENTS = "OperationContent"
+private const val STATE_PENDING_OPERATION = "StatePendingOperation"
+private const val STATE_OPERAND1 = "Operand1"
 
 class MainActivity : AppCompatActivity() {
 
@@ -112,11 +113,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(OPERATION_CONTENTS, displayOperation.text.toString())
+        outState.putString(STATE_PENDING_OPERATION, pendingOperation)
+        outState.putString(STATE_OPERAND1, operand1.toString())
+
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        displayOperation.text = savedInstanceState.getString(OPERATION_CONTENTS, "")
+        pendingOperation = savedInstanceState.getString(STATE_PENDING_OPERATION, "")
+        operand1 = savedInstanceState.getString(STATE_OPERAND1,"").toDouble()
+        displayOperation.text = pendingOperation
     }
 }
