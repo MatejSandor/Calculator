@@ -108,4 +108,12 @@ class MainActivity : AppCompatActivity() {
         result.setText(operand1.toString())
         newNumber.setText("")
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+    }
 }
