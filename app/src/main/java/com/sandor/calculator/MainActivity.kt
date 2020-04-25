@@ -4,18 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 private const val STATE_PENDING_OPERATION = "StatePendingOperation"
 private const val STATE_OPERAND1 = "Operand1"
 
 class MainActivity : AppCompatActivity() {
-
-    private val displayOperation by lazy(LazyThreadSafetyMode.NONE) { findViewById<TextView>(R.id.operation) }
-    private lateinit var result: EditText
-    private lateinit var newNumber: EditText
 
     //Variables to hold operands
     private var operand1: Double? = null
@@ -25,29 +19,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        result = findViewById(R.id.result)
-        newNumber = findViewById(R.id.newNumber)
-
-        //Buttons with numbers initialization
-        val button0 = findViewById<Button>(R.id.button0)
-        val button1 = findViewById<Button>(R.id.button1)
-        val button2 = findViewById<Button>(R.id.button2)
-        val button3 = findViewById<Button>(R.id.button3)
-        val button4 = findViewById<Button>(R.id.button4)
-        val button5 = findViewById<Button>(R.id.button5)
-        val button6 = findViewById<Button>(R.id.button6)
-        val button7 = findViewById<Button>(R.id.button7)
-        val button8 = findViewById<Button>(R.id.button8)
-        val button9 = findViewById<Button>(R.id.button9)
-        val buttonDot = findViewById<Button>(R.id.buttonDecimal)
-
-        //Buttons for operations
-        val plus: Button = findViewById(R.id.buttonAddition)
-        val minus: Button = findViewById(R.id.buttonSubtraction)
-        val times: Button = findViewById(R.id.buttonMultiplication)
-        val divide: Button = findViewById(R.id.buttonDivision)
-        val equals: Button = findViewById(R.id.buttonEquals)
 
         // Creation of listener for buttons
         val listener = View.OnClickListener { v ->
@@ -65,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         button7.setOnClickListener(listener)
         button8.setOnClickListener(listener)
         button9.setOnClickListener(listener)
-        buttonDot.setOnClickListener(listener)
+        buttonDecimal.setOnClickListener(listener)
 
         val operationListener = View.OnClickListener { v ->
             val o = (v as Button).text.toString()
@@ -77,14 +48,14 @@ class MainActivity : AppCompatActivity() {
             }
             val value = newNumber.text.toString()
             pendingOperation = o
-            displayOperation.text = pendingOperation
+            operation.text = pendingOperation
         }
 
-        plus.setOnClickListener(operationListener)
-        minus.setOnClickListener(operationListener)
-        times.setOnClickListener(operationListener)
-        divide.setOnClickListener(operationListener)
-        equals.setOnClickListener(operationListener)
+        buttonAddition.setOnClickListener(operationListener)
+        buttonSubtraction.setOnClickListener(operationListener)
+        buttonMultiplication.setOnClickListener(operationListener)
+        buttonDivision.setOnClickListener(operationListener)
+        buttonEquals.setOnClickListener(operationListener)
 
     }
 
@@ -123,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         pendingOperation = savedInstanceState.getString(STATE_PENDING_OPERATION, "")
-        operand1 = savedInstanceState.getDouble(STATE_OPERAND1,0.0)
-        displayOperation.text = pendingOperation
+        operand1 = savedInstanceState.getDouble(STATE_OPERAND1, 0.0)
+        operation.text = pendingOperation
     }
 }
