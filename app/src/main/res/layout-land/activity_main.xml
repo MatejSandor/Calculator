@@ -206,4 +206,17 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:maxWidth="48dip"
+        android:maxHeight="48dip"
+        android:minWidth="48dip"
+        android:minHeight="48dip"
+        android:text="+ / _"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonDivision"
+        app:layout_constraintStart_toEndOf="@+id/buttonDivision" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
