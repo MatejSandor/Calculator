@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         button8.setOnClickListener(listener)
         button9.setOnClickListener(listener)
         buttonDecimal.setOnClickListener(listener)
-        buttonSign.setOnClickListener(listener)
 
         val operationListener = View.OnClickListener { v ->
             val o = (v as Button).text.toString()
@@ -57,6 +56,21 @@ class MainActivity : AppCompatActivity() {
         buttonMultiplication.setOnClickListener(operationListener)
         buttonDivision.setOnClickListener(operationListener)
         buttonEquals.setOnClickListener(operationListener)
+
+        buttonSign?.setOnClickListener {
+            val value = newNumber.text.toString()
+            if (value.isEmpty()) {
+                newNumber.setText("-")
+            } else {
+                try {
+                    var doubleValue = value.toDouble()
+                    doubleValue *= -1
+                    newNumber.setText(doubleValue.toString())
+                } catch (e: NumberFormatException) {
+                    newNumber.setText("")
+                }
+            }
+        }
 
     }
 

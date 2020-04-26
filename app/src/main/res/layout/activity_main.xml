@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/buttonSign2"
+        android:layout_width="62dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:maxWidth="48dip"
+        android:maxHeight="48dip"
+        android:minWidth="48dip"
+        android:minHeight="48dip"
+        android:text="NEG"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonDivision"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonDivision" />
+
     <EditText
         android:id="@+id/result"
         android:layout_width="wrap_content"
@@ -136,12 +151,10 @@
         android:id="@+id/buttonDivision"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
         android:minWidth="48dip"
         android:text="/"
         app:layout_constraintBaseline_toBaselineOf="@+id/button7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toEndOf="@+id/button9" />
 
     <Button
