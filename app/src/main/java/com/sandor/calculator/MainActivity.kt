@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         button8.setOnClickListener(listener)
         button9.setOnClickListener(listener)
         buttonDecimal.setOnClickListener(listener)
+        buttonSign.setOnClickListener(listener)
 
         val operationListener = View.OnClickListener { v ->
             val o = (v as Button).text.toString()
