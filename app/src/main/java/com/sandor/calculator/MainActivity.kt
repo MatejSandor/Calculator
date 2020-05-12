@@ -6,15 +6,7 @@ import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
-private const val STATE_PENDING_OPERATION = "StatePendingOperation"
-private const val STATE_OPERAND1 = "Operand1"
-
 class MainActivity : AppCompatActivity() {
-
-    //Variables to hold operands
-    private var operand1: Double? = null
-    private var pendingOperation = "="
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         // Creation of listener for buttons
         val listener = View.OnClickListener { v ->
-            val b = v as Button
-            newNumber.append(b.text)
+//            viewModel.digitPressed((v as Button).text.toString())
         }
 
         button0.setOnClickListener(listener)
@@ -39,16 +30,7 @@ class MainActivity : AppCompatActivity() {
         buttonDecimal.setOnClickListener(listener)
 
         val operationListener = View.OnClickListener { v ->
-            val o = (v as Button).text.toString()
-            try {
-                val value = newNumber.text.toString().toDouble()
-                performOperation(value, o)
-            } catch (e: NumberFormatException) {
-                newNumber.setText("")
-            }
-            val value = newNumber.text.toString()
-            pendingOperation = o
-            operation.text = pendingOperation
+//            vieModel.operandPressed((v as Button).text.toString())
         }
 
         buttonAddition.setOnClickListener(operationListener)
@@ -58,58 +40,8 @@ class MainActivity : AppCompatActivity() {
         buttonEquals.setOnClickListener(operationListener)
 
         buttonSign?.setOnClickListener {
-            val value = newNumber.text.toString()
-            if (value.isEmpty()) {
-                newNumber.setText("-")
-            } else {
-                try {
-                    var doubleValue = value.toDouble()
-                    doubleValue *= -1
-                    newNumber.setText(doubleValue.toString())
-                } catch (e: NumberFormatException) {
-                    newNumber.setText("")
-                }
-            }
+//            viewModel.negPressed()
         }
 
-    }
-
-    private fun performOperation(value: Double, operation: String) {
-        if (operand1 == null) {
-            operand1 = value
-        } else {
-            if (pendingOperation == "=") {
-                pendingOperation = operation
-            }
-        }
-        when (pendingOperation) {
-            "=" -> operand1 = value
-            "+" -> operand1 = operand1!! + value
-            "-" -> operand1 = operand1!! - value
-            "*" -> operand1 = operand1!! * value
-            "/" -> operand1 = if (value == 0.0) {
-                Double.NaN
-            } else {
-                operand1!! / value
-            }
-        }
-        result.setText(operand1.toString())
-        newNumber.setText("")
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        if (operand1 != null) {
-            outState.putDouble(STATE_OPERAND1, operand1!!)
-        }
-        outState.putString(STATE_PENDING_OPERATION, pendingOperation)
-
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        pendingOperation = savedInstanceState.getString(STATE_PENDING_OPERATION, "")
-        operand1 = savedInstanceState.getDouble(STATE_OPERAND1, 0.0)
-        operation.text = pendingOperation
     }
 }
