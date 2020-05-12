@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.activity.viewModels
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+        val viewModel: CalculatorViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
         // Creation of listener for buttons
         val listener = View.OnClickListener { v ->
-//            viewModel.digitPressed((v as Button).text.toString())
+            viewModel.digitPressed((v as Button).text.toString())
         }
 
         button0.setOnClickListener(listener)
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         buttonDecimal.setOnClickListener(listener)
 
         val operationListener = View.OnClickListener { v ->
-//            vieModel.operandPressed((v as Button).text.toString())
+            viewModel.operandPressed((v as Button).text.toString())
         }
 
         buttonAddition.setOnClickListener(operationListener)
@@ -40,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         buttonEquals.setOnClickListener(operationListener)
 
         buttonSign?.setOnClickListener {
-//            viewModel.negPressed()
+            viewModel.negPressed()
         }
 
     }
