@@ -9,9 +9,9 @@ class CalculatorViewModel: ViewModel() {
     private var operand1: Double? = null
     private var pendingOperation = "="
 
-    private val result = MutableLiveData<String>()
-    private val newNumber = MutableLiveData<String>()
-    private val operation = MutableLiveData<String>()
+    val result = MutableLiveData<String>()
+    val newNumber = MutableLiveData<String>()
+    val operation = MutableLiveData<String>()
 
     fun digitPressed(caption: String) {
         if(newNumber.value != null) {

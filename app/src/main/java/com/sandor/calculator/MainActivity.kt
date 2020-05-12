@@ -5,15 +5,20 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-        val viewModel: CalculatorViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val viewModel: CalculatorViewModel by viewModels()
+        viewModel.result.observe(this, Observer<String>{ stringResult -> result.setText(stringResult)})
+        viewModel.newNumber.observe(this, Observer<String>{ stringNumber -> newNumber.setText(stringNumber)})
+        viewModel.operation.observe(this, Observer<String>{ stringOperation -> operation.text = stringOperation})
 
         // Creation of listener for buttons
         val listener = View.OnClickListener { v ->
