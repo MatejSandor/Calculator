@@ -16,9 +16,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val viewModel: CalculatorViewModel by viewModels()
-        viewModel.result.observe(this, Observer<String>{ stringResult -> result.setText(stringResult)})
-        viewModel.newNumber.observe(this, Observer<String>{ stringNumber -> newNumber.setText(stringNumber)})
-        viewModel.operation.observe(this, Observer<String>{ stringOperation -> operation.text = stringOperation})
+        viewModel.stringResult.observe(this, Observer<String>{ stringResult -> result.setText(stringResult)})
+        viewModel.stringNumber.observe(this, Observer<String>{ stringNumber -> newNumber.setText(stringNumber)})
+        viewModel.stringOperation.observe(this, Observer<String>{ stringOperation -> operation.text = stringOperation})
 
         // Creation of listener for buttons
         val listener = View.OnClickListener { v ->
