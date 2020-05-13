@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 
-class CalculatorViewModel: ViewModel() {
+class CalculatorViewModel : ViewModel() {
 
     //Variables to hold operands
     private var operand1: Double? = null
@@ -14,7 +14,7 @@ class CalculatorViewModel: ViewModel() {
 
     private val result = MutableLiveData<Double>()
     val stringResult: LiveData<String>
-        get() = Transformations.map(result) {it.toString()}
+        get() = Transformations.map(result) { it.toString() }
 
     private val newNumber = MutableLiveData<String>()
     val stringNumber: LiveData<String>
@@ -25,7 +25,7 @@ class CalculatorViewModel: ViewModel() {
         get() = operation
 
     fun digitPressed(caption: String) {
-        if(newNumber.value != null) {
+        if (newNumber.value != null) {
             newNumber.value = newNumber.value + caption
         } else {
             newNumber.value = caption

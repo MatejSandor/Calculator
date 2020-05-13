@@ -1,13 +1,12 @@
 package com.sandor.calculator
 
-import android.view.animation.Transformation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import java.math.BigDecimal
 
-class BigDecimalViewModel: ViewModel() {
+class BigDecimalViewModel : ViewModel() {
 
     //Variables to hold operands
     private var operand1: BigDecimal? = null
@@ -15,7 +14,7 @@ class BigDecimalViewModel: ViewModel() {
 
     private val result = MutableLiveData<BigDecimal>()
     val stringResult: LiveData<String>
-        get() = Transformations.map(result) {it.toString()}
+        get() = Transformations.map(result) { it.toString() }
 
     private val newNumber = MutableLiveData<String>()
     val stringNumber: LiveData<String>
@@ -26,7 +25,7 @@ class BigDecimalViewModel: ViewModel() {
         get() = operation
 
     fun digitPressed(caption: String) {
-        if(newNumber.value != null) {
+        if (newNumber.value != null) {
             newNumber.value = newNumber.value + caption
         } else {
             newNumber.value = caption
